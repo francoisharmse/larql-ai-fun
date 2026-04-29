@@ -1,0 +1,21 @@
+{
+  "version": "41.0.0",
+  "files": {
+    "0fe04b29f7a8593d805529655d4baa1119a35c730abaff4889472a35f83ef2d0": {
+      "displayName": "DnsRecordsStack Template",
+      "source": {
+        "path": "DnsRecordsStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "629577971776-eu-west-1": {
+          "bucketName": "cdk-hnb659fds-assets-629577971776-eu-west-1",
+          "objectKey": "0fe04b29f7a8593d805529655d4baa1119a35c730abaff4889472a35f83ef2d0.json",
+          "region": "eu-west-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-file-publishing-role-629577971776-eu-west-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

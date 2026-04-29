@@ -1,0 +1,3 @@
+aws-cdk-lib>=2.80.0
+constructs>=10.0.0
+# aws-cdk.aws-s3-deployment is now part of aws-cdk-lib in CDK v2

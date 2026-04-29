@@ -1,0 +1,123 @@
+name: React Build and Deploy
+
+on:
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ '*' ]
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: 'Deploy infrastructure after build'
+        required: true
+        default: false
+        type: boolean
+      aws_region:
+        description: 'AWS Region'
+        required: true
+        default: 'eu-west-1'
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-web-app:
+    name: Build React App
+    runs-on: ubuntu-latest
+
+    outputs:
+      build_id: ${{ steps.build_info.outputs.build_id }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: './larql-audio-app/package-lock.json'
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./larql-audio-app
+
+      - name: Build
+        run: npm run build
+        working-directory: ./larql-audio-app
+        env:
+          CI: false  # Prevents treating warnings as errors
+          SENTRY_AUTH_TOKEN: ${{ vars.SENTRY_AUTH_TOKEN }}
+
+      - name: Generate build info
+        id: build_info
+        run: echo "build_id=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-build
+          path: ./larql-audio-app/build
+          retention-days: 1
+
+  deploy-infrastructure:
+    name: Deploy AWS CDK Infrastructure
+    runs-on: ubuntu-latest
+    needs: build-web-app
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && inputs.deploy == true)
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: react-build
+          path: ./larql-audio-app/build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubActionsOIDC
+          aws-region: ${{ inputs.aws_region || 'eu-west-1' }}
+          role-session-name: GitHubActionsOIDCSession
+          audience: sts.amazonaws.com
+          role-duration-seconds: 900
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Set up Node.js (required for CDK)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install CDK globally
+        run: npm install -g aws-cdk
+
+      - name: Install Python dependencies
+        run: |
+          cd cdk
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: CDK Synth and Diff
+        run: |
+          cd cdk
+          cdk diff
+
+      - name: CDK Deploy
+        run: |
+          cd cdk
+          cdk deploy --all --require-approval never
+
+      - name: Output Stack Information
+        run: |
+          echo "Infrastructure deployment complete!"
+          echo "The React app has been deployed through the CDK BucketDeployment resource."

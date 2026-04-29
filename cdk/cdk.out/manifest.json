@@ -1,0 +1,434 @@
+{
+  "version": "41.0.0",
+  "artifacts": {
+    "DnsStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "DnsStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "DnsStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://629577971776/eu-west-1",
+      "properties": {
+        "templateFile": "DnsStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-deploy-role-629577971776-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-cfn-exec-role-629577971776-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-629577971776-eu-west-1/33f3f94846aad88e890a132e7514f0dc2b3cfa9b4ecf6e4efa8efa4be21d2fea.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "DnsStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-lookup-role-629577971776-eu-west-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "DnsStack.assets"
+      ],
+      "metadata": {
+        "/DnsStack/MakerspaceDnsZone/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MakerspaceDnsZoneEC8CBDDA"
+          }
+        ],
+        "/DnsStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/DnsStack/Exports/Output{\"Ref\":\"MakerspaceDnsZoneEC8CBDDA\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefMakerspaceDnsZoneEC8CBDDA83C1CA30"
+          }
+        ],
+        "/DnsStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/DnsStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "DnsStack"
+    },
+    "WebsiteStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "WebsiteStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "WebsiteStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://629577971776/eu-west-1",
+      "properties": {
+        "templateFile": "WebsiteStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-deploy-role-629577971776-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-cfn-exec-role-629577971776-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-629577971776-eu-west-1/7d4303d18475cfeb4e4e0e0c0ec1d9047981aa2031fdd5a4322e471ceeeefc12.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "WebsiteStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-lookup-role-629577971776-eu-west-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "DnsStack",
+        "WebsiteStack.assets"
+      ],
+      "metadata": {
+        "/WebsiteStack/WebsiteBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebsiteBucket75C24D94"
+          }
+        ],
+        "/WebsiteStack/WebsiteBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebsiteBucketPolicyE10E3262"
+          }
+        ],
+        "/WebsiteStack/WebsiteBucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebsiteBucketAutoDeleteObjectsCustomResource8750E461"
+          }
+        ],
+        "/WebsiteStack/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+          {
+            "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+            "data": true
+          }
+        ],
+        "/WebsiteStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/WebsiteStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/WebsiteStack/ResponseHeadersPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ResponseHeadersPolicy13DBF9E0"
+          }
+        ],
+        "/WebsiteStack/SiteCertificate/CertificateRequestorFunction": [
+          {
+            "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+            "data": 0
+          }
+        ],
+        "/WebsiteStack/SiteCertificate/CertificateRequestorFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SiteCertificateCertificateRequestorFunctionServiceRole645E891D"
+          }
+        ],
+        "/WebsiteStack/SiteCertificate/CertificateRequestorFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SiteCertificateCertificateRequestorFunctionServiceRoleDefaultPolicy96ED5C9C"
+          }
+        ],
+        "/WebsiteStack/SiteCertificate/CertificateRequestorFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SiteCertificateCertificateRequestorFunction7CFA7DEA"
+          }
+        ],
+        "/WebsiteStack/SiteCertificate/CertificateRequestorResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SiteCertificateCertificateRequestorResource6021082A"
+          }
+        ],
+        "/WebsiteStack/WebsiteDistribution/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebsiteDistribution75DCDA0B"
+          }
+        ],
+        "/WebsiteStack/DeployWebsite/AwsCliLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeployWebsiteAwsCliLayer17DBC421"
+          }
+        ],
+        "/WebsiteStack/DeployWebsite/CustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeployWebsiteCustomResourceD116527B"
+          }
+        ],
+        "/WebsiteStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C": [
+          {
+            "type": "aws:cdk:is-custom-resource-handler-singleton",
+            "data": true
+          },
+          {
+            "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+            "data": 2
+          }
+        ],
+        "/WebsiteStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+          }
+        ],
+        "/WebsiteStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF"
+          }
+        ],
+        "/WebsiteStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536"
+          }
+        ],
+        "/WebsiteStack/AWSCloudFrontPartitionHostedZoneIdMap": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWSCloudFrontPartitionHostedZoneIdMap"
+          }
+        ],
+        "/WebsiteStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/WebsiteStack/Exports/Output{\"Fn::GetAtt\":[\"WebsiteDistribution75DCDA0B\",\"DomainName\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttWebsiteDistribution75DCDA0BDomainNameE6B606D2"
+          }
+        ],
+        "/WebsiteStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/WebsiteStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "WebsiteStack"
+    },
+    "DnsRecordsStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "DnsRecordsStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "DnsRecordsStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://629577971776/eu-west-1",
+      "properties": {
+        "templateFile": "DnsRecordsStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-deploy-role-629577971776-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-cfn-exec-role-629577971776-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-629577971776-eu-west-1/0fe04b29f7a8593d805529655d4baa1119a35c730abaff4889472a35f83ef2d0.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "DnsRecordsStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-lookup-role-629577971776-eu-west-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "DnsStack",
+        "WebsiteStack",
+        "DnsRecordsStack.assets"
+      ],
+      "metadata": {
+        "/DnsRecordsStack/ApexRecord/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApexRecord31DF5995"
+          }
+        ],
+        "/DnsRecordsStack/WwwRecord/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WwwRecordB30C9252"
+          }
+        ],
+        "/DnsRecordsStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/DnsRecordsStack/MappingCopy-AWSCloudFrontPartitionHostedZoneIdMap-c8db3c34700472da07c7cd7d5218a0853228f43c06": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MappingCopyAWSCloudFrontPartitionHostedZoneIdMapc8db3c34700472da07c7cd7d5218a0853228f43c06"
+          },
+          {
+            "type": "aws:cdk:info",
+            "data": "Consider making this CfnMapping a lazy mapping by providing `lazy: true`: either no findInMap was called or every findInMap could be immediately resolved without using Fn::FindInMap",
+            "trace": [
+              "Annotations.addMessage (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
+              "Annotations.addInfo (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1015)",
+              "CfnMapping.informLazyUse (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/cfn-mapping.js:1:2258)",
+              "CfnMapping._toCloudFormation (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/cfn-mapping.js:1:2085)",
+              "/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/stack.js:1:20251",
+              "Array.map (<anonymous>)",
+              "Stack._toCloudFormation (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/stack.js:1:20229)",
+              "Stack._synthesizeTemplate (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/stack.js:1:14314)",
+              "DefaultStackSynthesizer.synthesizeTemplate (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/stack-synthesizers/stack-synthesizer.js:1:2210)",
+              "DefaultStackSynthesizer.synthesize (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/stack-synthesizers/default-synthesizer.js:1:6962)",
+              "/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:5811",
+              "visit (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:4:372)",
+              "visit (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:4:334)",
+              "synthesizeTree (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:5653)",
+              "synthesize (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:1:1769)",
+              "App.synth (/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/jsii-kernel-6bBVIK/node_modules/aws-cdk-lib/core/lib/stage.js:1:2474)",
+              "/private/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/tmpo06rt4tt/lib/program.js:294:172",
+              "Kernel._Kernel_ensureSync (/private/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/tmpo06rt4tt/lib/program.js:920:24)",
+              "Kernel.invoke (/private/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/tmpo06rt4tt/lib/program.js:294:102)",
+              "KernelHost.processRequest (/private/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/tmpo06rt4tt/lib/program.js:15471:36)",
+              "KernelHost.run (/private/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/tmpo06rt4tt/lib/program.js:15431:22)",
+              "Immediate._onImmediate (/private/var/folders/pc/mbry0j3953l4jytcd0cl2ntr0000gn/T/tmpo06rt4tt/lib/program.js:15432:46)",
+              "process.processImmediate (node:internal/timers:483:21)"
+            ]
+          }
+        ],
+        "/DnsRecordsStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/DnsRecordsStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "DnsRecordsStack"
+    },
+    "DynamoTestStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "DynamoTestStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "DynamoTestStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://629577971776/eu-west-1",
+      "properties": {
+        "templateFile": "DynamoTestStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-deploy-role-629577971776-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-cfn-exec-role-629577971776-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-629577971776-eu-west-1/8674c87b53c052197d4ae2cd48138b62c71e94d2222985065d12888df23742ab.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "DynamoTestStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::629577971776:role/cdk-hnb659fds-lookup-role-629577971776-eu-west-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "DynamoTestStack.assets"
+      ],
+      "metadata": {
+        "/DynamoTestStack/DynamoTable2": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "DynamoTable2B4992A51"
+            }
+          }
+        ],
+        "/DynamoTestStack/DynamoTable2/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoTable2B4992A51"
+          }
+        ],
+        "/DynamoTestStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/DynamoTestStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/DynamoTestStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "DynamoTestStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  },
+  "minimumCliVersion": "2.1005.0"
+}

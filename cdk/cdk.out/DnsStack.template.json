@@ -1,0 +1,70 @@
+{
+ "Description": "DNS Infrastructure for Makerspace3D",
+ "Resources": {
+  "MakerspaceDnsZoneEC8CBDDA": {
+   "Type": "AWS::Route53::HostedZone",
+   "Properties": {
+    "HostedZoneConfig": {
+     "Comment": "Hosted zone for Makerspace3D website"
+    },
+    "Name": "makerspace3d.co.za."
+   },
+   "Metadata": {
+    "aws:cdk:path": "DnsStack/MakerspaceDnsZone/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSM7Q00jNQTCwv1k1OydbNyUzSqw4uSUzO1kksL44vyi8tSTU11qsOKE3KyUz2yC8uSU2Jys9L1XFOy0Pwamt1AipLMvLz9I31DI31DBWzijMzdYtK80oyc1P1giA0ACPqdlBrAAAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "DnsStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "ExportsOutputRefMakerspaceDnsZoneEC8CBDDA83C1CA30": {
+   "Value": {
+    "Ref": "MakerspaceDnsZoneEC8CBDDA"
+   },
+   "Export": {
+    "Name": "DnsStack:ExportsOutputRefMakerspaceDnsZoneEC8CBDDA83C1CA30"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
