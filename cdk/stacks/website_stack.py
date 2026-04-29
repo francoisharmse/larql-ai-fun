@@ -62,6 +62,7 @@ class WebsiteStack(Stack):
             destination_bucket=website_bucket,
             distribution=distribution,
             distribution_paths=["/*"],
+            memory_limit=1024,
         )
 
         # Store the distribution for other stacks to use

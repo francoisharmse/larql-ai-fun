@@ -748,6 +748,32 @@ function App() {
                   <em>This visualization represents that very conversation - a window into how an LLM 'reasons' through a seemingly simple mathematical expression.</em>
                 </Typography>
               </Box>
+
+              <Box sx={{ mt: 3, p: 3, backgroundColor: 'rgba(33, 150, 243, 0.08)', borderRadius: 1, border: '1px solid rgba(33, 150, 243, 0.2)' }}>
+                <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 2, color: '#1976d2' }}>
+                  Technical Solution Architecture
+                </Typography>
+                <Typography variant="body2" sx={{ lineHeight: 1.6, mb: 2 }}>
+                  This visualization demonstrates a complete AI pipeline combining multiple advanced technologies:
+                </Typography>
+                <Box sx={{ ml: 2 }}>
+                  <Typography variant="body2" sx={{ lineHeight: 1.6, mb: 1 }}>
+                    <strong>• AWS Polly for Text-to-Speech Generation:</strong> Utilizes custom lexicons to generate natural-sounding speech with precise pronunciation control for technical terms and mathematical expressions.
+                  </Typography>
+                  <Typography variant="body2" sx={{ lineHeight: 1.6, mb: 1 }}>
+                    <strong>• Gemma4 Local LLM through Ollama:</strong> Leverages the Gemma4 model running locally via Ollama to generate sophisticated LARQL conversations and reasoning demonstrations.
+                  </Typography>
+                  <Typography variant="body2" sx={{ lineHeight: 1.6, mb: 1 }}>
+                    <strong>• LARQL Gemma4 Export to Vindex:</strong> Exports Gemma4 model weights to a vindex structure enabling efficient neural network graph traversal and analytics.
+                  </Typography>
+                  <Typography variant="body2" sx={{ lineHeight: 1.6, mb: 1 }}>
+                    <strong>• Walk and Inference Analytics:</strong> Implements LARQL's WALK command to traverse transformer layers step-by-step, providing unprecedented visibility into LLM reasoning processes.
+                  </Typography>
+                </Box>
+                <Typography variant="body2" sx={{ mt: 2, fontSize: '0.875rem', color: '#666' }}>
+                  <em>This architecture enables real-time visualization of neural network activations, making the 'black box' of AI reasoning transparent and educational and fun!.</em>
+                </Typography>
+              </Box>
             </Box>
           </AccordionDetails>
         </Accordion>
