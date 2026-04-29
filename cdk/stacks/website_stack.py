@@ -34,7 +34,7 @@ class WebsiteStack(Stack):
         distribution = cloudfront.Distribution(
             self, "WebsiteDistribution",
             default_behavior=cloudfront.BehaviorOptions(
-                origin=origins.S3Origin(website_bucket),
+                origin=origins.S3StaticWebsiteOrigin(website_bucket),
                 viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
                 cache_policy=cloudfront.CachePolicy.CACHING_OPTIMIZED,
             ),
@@ -58,7 +58,7 @@ class WebsiteStack(Stack):
         # Deploy website content from the dist directory
         s3deploy.BucketDeployment(
             self, "DeployWebsite",
-            sources=[s3deploy.Source.asset("./dist")],
+            sources=[s3deploy.Source.asset("../dist")],
             destination_bucket=website_bucket,
             distribution=distribution,
             distribution_paths=["/*"],
