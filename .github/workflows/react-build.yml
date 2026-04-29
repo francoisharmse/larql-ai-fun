@@ -49,7 +49,6 @@ jobs:
         working-directory: ./larql-audio-app
         env:
           CI: false  # Prevents treating warnings as errors
-          SENTRY_AUTH_TOKEN: ${{ vars.SENTRY_AUTH_TOKEN }}
 
       - name: Generate build info
         id: build_info
