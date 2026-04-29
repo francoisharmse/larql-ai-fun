@@ -55,10 +55,10 @@ class WebsiteStack(Stack):
             ],
         )
 
-        # Deploy website content from the build directory
+        # Deploy website content from the dist directory
         s3deploy.BucketDeployment(
             self, "DeployWebsite",
-            sources=[s3deploy.Source.asset("./build")],
+            sources=[s3deploy.Source.asset("./dist")],
             destination_bucket=website_bucket,
             distribution=distribution,
             distribution_paths=["/*"],
