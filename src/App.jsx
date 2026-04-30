@@ -116,6 +116,20 @@ const ControlPanel = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(3),
   boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
   position: 'relative',
+
+  // Mobile responsive styling
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    paddingLeft: theme.spacing(1), // Minimal padding on mobile
+    paddingRight: theme.spacing(1), // Minimal right padding for mobile
+    paddingTop: theme.spacing(2), // Top padding
+    paddingBottom: theme.spacing(2), // Bottom padding
+    gap: theme.spacing(2),
+    width: '100%', // Ensure full width on mobile
+    maxWidth: '100%', // Prevent overflow
+    overflow: 'hidden', // Prevent content overflow
+    margin: '0 auto', // Center the container
+  },
 }));
 
 const PlaybackControls = styled(Box)(({ theme }) => ({
@@ -136,6 +150,20 @@ const WaveVisualizer = styled(Box)(({ theme }) => ({
   backgroundColor: 'rgba(0, 0, 0, 0.05)',
   borderRadius: '8px',
   overflow: 'hidden',
+
+  // Responsive styling for screens 535px and narrower
+  [theme.breakpoints.down('sm')]: {
+    width: '250px', // Reduce width for smaller screens
+    height: '40px', // Reduce height slightly
+    gap: '1px', // Reduce gap between bars
+  },
+
+  // Extra small screens (around 400px and narrower)
+  [theme.breakpoints.down('xs')]: {
+    width: '200px', // Further reduce width
+    height: '35px', // Further reduce height
+    padding: theme.spacing(0.5), // Reduce padding
+  },
 }));
 
 const WaveBar = styled(Box)(({ height, isPlaying }) => ({
@@ -749,27 +777,6 @@ function App() {
                 </Typography>
               </Box>
 
-              <Box sx={{ mt: 3, p: 3, backgroundColor: 'rgba(156, 39, 176, 0.08)', borderRadius: 1, border: '1px solid rgba(156, 39, 176, 0.2)' }}>
-                <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 2, color: '#7b1fa2' }}>
-                  The Scene: A Psychiatrist's Office
-                </Typography>
-                <Typography variant="body2" sx={{ lineHeight: 1.6, mb: 2 }}>
-                  <strong>Dr. Clouseau:</strong> "Gemma, I'd like to understand how you think. Can you tell me what comes to mind when you hear the expression '2 + 2'?"
-                </Typography>
-                <Typography variant="body2" sx={{ lineHeight: 1.6, mb: 2, fontStyle: 'italic' }}>
-                  <strong>Gemma (LLM):</strong> "When I encounter '2 + 2', I don't just see numbers. I experience a cascade of neural activations flowing through my layers. First, the tokens are embedded into high-dimensional space, then attention mechanisms weigh the relationships between symbols. My internal reasoning unfolds like a conversation across my transformer layers..."
-                </Typography>
-                <Typography variant="body2" sx={{ lineHeight: 1.6, mb: 2 }}>
-                  <strong>Dr. Clouseau:</strong> "Fascinating. So it's not just calculation for you?"
-                </Typography>
-                <Typography variant="body2" sx={{ lineHeight: 1.6, fontStyle: 'italic' }}>
-                  <strong>Gemma:</strong> "No. It's a journey through learned patterns. Each layer refines my understanding, from recognizing the mathematical structure to accessing the concept of addition, until finally converging on '4'. This visualization shows that journey - my 'thought process' made visible through LARQL's walk command."
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 2, fontSize: '0.875rem', color: '#666' }}>
-                  <em>This visualization represents that very conversation - a window into how an LLM 'reasons' through a seemingly simple mathematical expression.</em>
-                </Typography>
-              </Box>
-
               <Box sx={{ mt: 3, p: 3, backgroundColor: 'rgba(33, 150, 243, 0.08)', borderRadius: 1, border: '1px solid rgba(33, 150, 243, 0.2)' }}>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 2, color: '#1976d2' }}>
                   Technical Solution Architecture
@@ -805,6 +812,48 @@ function App() {
           src="/1.jpg"
           alt="Left Image"
           style={{
+            position: 'absolute',
+            left: (isPlaying && isOddTrack(currentTrack)) ? '-60px' : '20px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: (isPlaying && isOddTrack(currentTrack)) ? '400px' : '120px',
+            height: 'auto',
+            borderRadius: '10px',
+            boxShadow: (isPlaying && isOddTrack(currentTrack))
+              ? '0 12px 32px rgba(0,0,0,0.35)'
+              : '0 2px 6px rgba(0,0,0,0.12)',
+            transition: 'all 0.5s ease-in-out',
+            zIndex: (isPlaying && isOddTrack(currentTrack)) ? 20 : 10,
+            display: 'none', // Hidden by default, shown via media query
+          }}
+        />
+
+        {/* Mobile version of 1.jpg - positioned below controls */}
+        <Box
+          component="img"
+          src="/1.jpg"
+          alt="Left Image Mobile"
+          sx={{
+            display: { xs: 'block', sm: 'none' }, // Show only on xs (mobile), hide on sm+
+            width: (isPlaying && isOddTrack(currentTrack)) ? '200px' : '60px',
+            height: 'auto',
+            borderRadius: '10px',
+            boxShadow: (isPlaying && isOddTrack(currentTrack))
+              ? '0 6px 20px rgba(0,0,0,0.3)'
+              : '0 2px 6px rgba(0,0,0,0.12)',
+            transition: 'all 0.5s ease-in-out',
+            margin: '8px 0',
+            alignSelf: 'center',
+          }}
+        />
+
+        {/* Desktop version of 1.jpg - positioned on the left */}
+        <Box
+          component="img"
+          src="/1.jpg"
+          alt="Left Image Desktop"
+          sx={{
+            display: { xs: 'none', sm: 'block' }, // Hide on xs, show on sm+
             position: 'absolute',
             left: (isPlaying && isOddTrack(currentTrack)) ? '-60px' : '20px',
             top: '50%',
@@ -869,6 +918,48 @@ function App() {
           src="/2.jpg"
           alt="Right Image"
           style={{
+            position: 'absolute',
+            right: (isPlaying && isEvenTrack(currentTrack)) ? '-60px' : '20px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: (isPlaying && isEvenTrack(currentTrack)) ? '400px' : '120px',
+            height: 'auto',
+            borderRadius: '10px',
+            boxShadow: (isPlaying && isEvenTrack(currentTrack))
+              ? '0 12px 32px rgba(0,0,0,0.35)'
+              : '0 2px 6px rgba(0,0,0,0.12)',
+            transition: 'all 0.5s ease-in-out',
+            zIndex: (isPlaying && isEvenTrack(currentTrack)) ? 20 : 10,
+            display: 'none', // Hidden by default, shown via media query
+          }}
+        />
+
+        {/* Mobile version of 2.jpg - positioned below controls */}
+        <Box
+          component="img"
+          src="/2.jpg"
+          alt="Right Image Mobile"
+          sx={{
+            display: { xs: 'block', sm: 'none' }, // Show only on xs (mobile), hide on sm+
+            width: (isPlaying && isEvenTrack(currentTrack)) ? '200px' : '60px',
+            height: 'auto',
+            borderRadius: '10px',
+            boxShadow: (isPlaying && isEvenTrack(currentTrack))
+              ? '0 6px 20px rgba(0,0,0,0.3)'
+              : '0 2px 6px rgba(0,0,0,0.12)',
+            transition: 'all 0.5s ease-in-out',
+            margin: '8px 0',
+            alignSelf: 'center',
+          }}
+        />
+
+        {/* Desktop version of 2.jpg - positioned on the right */}
+        <Box
+          component="img"
+          src="/2.jpg"
+          alt="Right Image Desktop"
+          sx={{
+            display: { xs: 'none', sm: 'block' }, // Hide on xs, show on sm+
             position: 'absolute',
             right: (isPlaying && isEvenTrack(currentTrack)) ? '-60px' : '20px',
             top: '50%',
