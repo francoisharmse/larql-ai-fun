@@ -873,6 +873,12 @@ function App() {
       src={`/${currentTrack}.mp3`}
       preload="metadata"
     />
+
+    <Box sx={{ mt: 4, p: 2, backgroundColor: 'rgba(0, 0, 0, 0.05)', borderTop: '1px solid rgba(0, 0, 0, 0.1)' }}>
+      <Typography variant="body2" sx={{ textAlign: 'center', color: '#666' }}>
+        © 2024 LARQL Audio Visualization | Author: Francois Harmse | Contact: francois.harmse@gmail.com
+      </Typography>
+    </Box>
   </Container>
 );
 }
