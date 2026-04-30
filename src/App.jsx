@@ -637,6 +637,27 @@ function App() {
         - similar to how a very intelligent person's mind would often jump all over the universe on just a simple small question.
       </Typography>
 
+      <Box sx={{ mt: 4, p: 3, backgroundColor: 'rgba(156, 39, 176, 0.08)', borderRadius: 1, border: '1px solid rgba(156, 39, 176, 0.2)' }}>
+        <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 2, color: '#7b1fa2' }}>
+          The Scene: A Psychiatrist's Office
+        </Typography>
+        <Typography variant="body2" sx={{ lineHeight: 1.6, mb: 2 }}>
+          <strong>Dr. Clouseau:</strong> "Gemma, I'd like to understand how you think. Can you tell me what comes to mind when you hear the expression '2 + 2'?"
+        </Typography>
+        <Typography variant="body2" sx={{ lineHeight: 1.6, mb: 2, fontStyle: 'italic' }}>
+          <strong>Gemma (LLM):</strong> "When I encounter '2 + 2', I don't just see numbers. I experience a cascade of neural activations flowing through my layers. First, the tokens are embedded into high-dimensional space, then attention mechanisms weigh the relationships between symbols. My internal reasoning unfolds like a conversation across my transformer layers..."
+        </Typography>
+        <Typography variant="body2" sx={{ lineHeight: 1.6, mb: 2 }}>
+          <strong>Dr. Clouseau:</strong> "Fascinating. So it's not just calculation for you?"
+        </Typography>
+        <Typography variant="body2" sx={{ lineHeight: 1.6, fontStyle: 'italic' }}>
+          <strong>Gemma:</strong> "No. It's a journey through learned patterns. Each layer refines my understanding, from recognizing the mathematical structure to accessing the concept of addition, until finally converging on '4'. This visualization shows that journey - my 'thought process' made visible through LARQL's walk command."
+        </Typography>
+        <Typography variant="body2" sx={{ mt: 2, fontSize: '0.875rem', color: '#666' }}>
+          <em>This visualization represents that very conversation - a window into how an LLM 'reasons' through a seemingly simple mathematical expression.</em>
+        </Typography>
+      </Box>
+
       <Box sx={{ mb: 3 }}>
         <Accordion>
           <AccordionSummary
